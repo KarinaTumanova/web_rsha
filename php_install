@@ -1,0 +1,12 @@
+#!/bin/bash
+#php paigaldus skriptiga
+#kontrollitakse, kas php on olemas
+PHP=$(dpkg-query -W -f='${Status}' php 2>/dev/null | grep -c "ok installed")
+#kui ridade arv on 0 siis pole php paigaldatud ja tuleb paigaldada
+if [ $PHP -eq 0 ]; then
+	echo "Paigaldan PHP"
+	sudo apt-get install libapache2-mod-php;
+#kui ridade arv on 0, on php installitud
+elif [ $PHP -eq 1 ]; then
+	echo "PHP on paigaldatud"
+fi
